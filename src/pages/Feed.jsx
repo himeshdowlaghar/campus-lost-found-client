@@ -84,8 +84,22 @@ export default function Feed() {
             {item.location && <p className="text-sm text-gray-500 mt-1">📍 {item.location}</p>}
             {item.description && <p className="text-sm text-gray-600 mt-1">{item.description}</p>}
             <p className="text-xs text-gray-400 mt-3">
-              Posted by {item.postedBy?.name} · {item.contactEmail}
-            </p>
+                Posted by {item.postedBy?.name}
+                </p>
+                <div className="flex gap-3 mt-1">
+                {item.contactEmail && (
+                    <a href={`mailto:${item.contactEmail}`}
+                    className="text-xs text-blue-500 hover:underline">
+                    📧 {item.contactEmail}
+                    </a>
+                )}
+                {item.contactPhone && (
+                    <a href={`tel:${item.contactPhone}`}
+                    className="text-xs text-green-500 hover:underline">
+                    📞 {item.contactPhone}
+                    </a>
+                )}
+                </div>
             {user && item.postedBy?._id === user.id && (
               <button onClick={() => resolve(item._id)}
                 className="mt-3 text-xs border rounded-lg px-3 py-1.5 text-gray-500 hover:bg-gray-50">
