@@ -9,7 +9,8 @@ export default function PostItem() {
   const [image, setImage] = useState(null)
   const [preview, setPreview] = useState(null)
   const [form, setForm] = useState({
-    type: 'lost', title: '', description: '', location: '', contactEmail: ''
+    type: 'lost', title: '', description: '',
+    location: '', contactEmail: '', contactPhone: ''
   })
 
   if (!token) {
@@ -71,18 +72,27 @@ export default function PostItem() {
             I Found Something
           </button>
         </div>
+
         <input placeholder="Title (e.g. Blue water bottle)" required
           className="border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
           onChange={e => setForm({...form, title: e.target.value})} />
+
         <input placeholder="Where? (e.g. Library 2nd floor)"
           className="border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
           onChange={e => setForm({...form, location: e.target.value})} />
+
         <textarea rows={3} placeholder="Description — color, brand, any details"
           className="border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black resize-none"
           onChange={e => setForm({...form, description: e.target.value})} />
+
         <input placeholder="Your contact email" type="email"
           className="border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
           onChange={e => setForm({...form, contactEmail: e.target.value})} />
+
+        <input placeholder="Your phone number (e.g. 9876543210)" type="tel"
+          className="border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
+          onChange={e => setForm({...form, contactPhone: e.target.value})} />
+
         <div className="border-2 border-dashed rounded-lg p-4 text-center">
           <input type="file" accept="image/*" onChange={handleImage}
             className="hidden" id="imageUpload" />
@@ -97,6 +107,7 @@ export default function PostItem() {
             )}
           </label>
         </div>
+
         <button type="submit" disabled={loading}
           className="bg-black text-white rounded-lg py-2.5 text-sm font-medium mt-1">
           {loading ? 'Posting...' : 'Post Item'}
